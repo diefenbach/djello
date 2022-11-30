@@ -1,0 +1,25 @@
+<form hx-boost="true"
+      hx-push-url="false"
+      hx-swap="none"
+      id="add-card-form"
+      method="post"
+      action="{% url 'djello:create-card' list_id %}">
+    {% csrf_token %}
+
+    <input class="form-control" type="text" name="title" maxlength="50" required id="id_title">
+
+    <button _="on click wait 10ms set #id_title.value to ''"
+            type="submit"
+            class="btn btn-primary"
+            id="create-card-button">
+        OK
+    </button>
+
+    <button hx-trigger="click"
+            hx-target="#add-card-form"
+            hx-swap="outerHTML"
+            hx-get="{% url 'c:c1' 'add-card-button' list_id %}"
+            type="reset" class="btn btn-secondary">
+        X
+    </button>
+</form>
