@@ -9,14 +9,14 @@ This is a try to create a trello clone by using Django, django_components, htmx 
 
 
 ## Contact
-If you have any questions or suggestions, please don't hesitate to get in contact (mailto:kai.diefenbach@iqpp.de). I am very interested in your thoughts and approaches according to this topic.
+If you have any questions or suggestions, please don't hesitate to get in contact (kai.diefenbach@iqpp.de). I am very interested in your thoughts and approaches according to this topic.
 
 
 ## Further informations
-- https://github.com/EmilStenstrom/django-components/
-- https://htmx.org/
-- https://hyperscript.org/
-- https://www.youtube.com/watch?v=3GObi93tjZI&t=1s
+- django_components https://github.com/EmilStenstrom/django-components/
+- htmx https://htmx.org/
+- hyperscript: https://hyperscript.org/
+- Real world example: https://www.youtube.com/watch?v=3GObi93tjZI&t=1s
 
 
 ## Thanks
