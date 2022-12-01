@@ -1,0 +1,9 @@
+<div hx-get="{% url "c:c1" 'cards' list_id %}"
+     hx-swap="outerHTML"
+     hx-trigger="AddedCard{{ list_id }} from:body">
+    {% for card in cards %}
+        <div>
+            {{ card.title }}
+        </div>
+    {% endfor %}
+</div>

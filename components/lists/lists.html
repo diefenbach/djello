@@ -1,0 +1,23 @@
+<div hx-get="{% url 'c:c' 'lists' %}"
+     hx-trigger="AddedList from:body"
+     hx-swap="outerHTML"
+     class="row">
+    {% for list in lists %}
+        <div class="col-auto">
+            <div>
+                {{ list.title }}
+            </div>
+            {% component "cards" list.id %}
+            {% component "add-card-button" list.id %}
+        </div>
+    {% endfor %}
+
+    <button hx-boost="true"
+            hx-trigger="click"
+            hx-swap="outerHTML"
+            hx-get="{% url 'djello:create-list' %}"
+            class="btn btn-primary col-auto">
+        Add another list
+    </button>
+</div>
+

@@ -1,0 +1,27 @@
+{% load crispy_forms_filters %}
+
+<form hx-boost="true"
+      hx-swap="none"
+      hx-push-url="false"
+      action="{% url 'djello:create-list' %}"
+      method="post"
+      id="list-form"
+      class="row">
+    {% csrf_token %}
+    <input class="form-control" type="text" name="title" maxlength="50" required id="id_title">
+    <div class="row">
+        <button type="submit"
+                class="btn btn-primary mt-1">
+            OK
+        </button>
+        <button hx-boost="true"
+                hx-swap="outerHTML"
+                hx-trigger="click"
+                hx-target="#list-form"
+                hx-get="{% url 'c:c' 'add-list-button' %}"
+                class="btn btn-secondary mt-1">
+            X
+        </button>
+    </div>
+</form>
+

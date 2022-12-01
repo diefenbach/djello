@@ -1,0 +1,4 @@
+Django==4.1.3
+django-components==0.22
+django-crispy-forms==1.14.0
+crispy-bootstrap5==0.7
