@@ -1,4 +1,7 @@
+import json
+
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, CreateView
 
 from djello.models import List, Card
@@ -29,6 +32,25 @@ class CreateCardView(CreateView):
     def form_valid(self, form):
         list_id = self.kwargs.get("list_id")
         form.instance.list_id = list_id
+        form.instance.order = 100000
         form.save()
 
+        list_ = List.objects.get(pk=list_id)
+        for i, card in enumerate(list_.cards.all()):
+            card.order = i * 10
+            card.save()
+
         return HttpResponse(headers={"HX-Trigger": f"AddedCard{list_id}"})
+
+
+@csrf_exempt
+def store_lists(request):
+    data = json.loads(request.body.decode("utf-8"))
+
+    for i, card_id in enumerate(data.get("cards", [])):
+        card = Card.objects.get(pk=card_id)
+        card.list_id = data.get("list")
+        card.order = i * 10
+        card.save()
+
+    return HttpResponse()

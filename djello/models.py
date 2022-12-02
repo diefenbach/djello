@@ -11,6 +11,10 @@ class List(models.Model):
 class Card(models.Model):
     title = models.CharField(max_length=50)
     list = models.ForeignKey(List, related_name="cards", on_delete=models.CASCADE)
+    order = models.SmallIntegerField(default=0)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ["order"]

@@ -1,9 +1,18 @@
-<div hx-get="{% url "c:c1" 'cards' list_id %}"
-     hx-swap="outerHTML"
-     hx-trigger="AddedCard{{ list_id }} from:body">
-    {% for card in cards %}
-        <div>
-            {{ card.title }}
+<div _="on htmx:afterRequest call createSortable({{ list_id }})">
+    <div hx-get="{% url "c:c1" 'cards' list_id %}"
+         hx-swap="innerHTML"
+         hx-select=".dj-list"
+         hx-trigger="AddedCard{{ list_id }} from:body">
+
+        <div id="list-id-{{ list_id }}"
+             class="dj-list"
+             data-id="{{ list_id }}">
+            {% for card in cards %}
+                <div class="dj-card" data-id="{{ card.id }}">
+                    {{ card.title }}
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+
+    </div>
 </div>
