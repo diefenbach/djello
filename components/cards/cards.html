@@ -1,18 +1,22 @@
-<div _="on htmx:afterRequest call createSortable({{ list_id }})">
-    <div hx-get="{% url "c:c1" 'cards' list_id %}"
-         hx-swap="innerHTML"
-         hx-select=".dj-list"
-         hx-trigger="AddedCard{{ list_id }} from:body">
+<div hx-get="{% url "c:c1" 'cards' list_id %}"
+     hx-swap="outerHTML"
+     hx-trigger="AddedCard{{ list_id }} from:body">
 
-        <div id="list-id-{{ list_id }}"
-             class="dj-list"
-             data-id="{{ list_id }}">
-            {% for card in cards %}
-                <div class="dj-card" data-id="{{ card.id }}">
-                    {{ card.title }}
-                </div>
-            {% endfor %}
-        </div>
+     {% comment %}
+        For any reasons store-lists is called twice while the end event is called just once.
+        throttle:10ms below fixes this for now.
+     {% endcomment %}
 
-    </div>
+    <form class="dj-list"
+          hx-post="{% url 'djello:store-lists' %}"
+          hx-swap="none"
+          hx-trigger="sendForm throttle:10ms"
+          _="on end trigger sendForm on event.to">
+        <input type='hidden' name='list' value='{{ list_id }}'/>
+        {% for card in cards %}
+            <div class="dj-card">
+                <input type='hidden' name='card' value='{{ card.id }}'/>{{ card.title }}
+            </div>
+        {% endfor %}
+    </form>
 </div>

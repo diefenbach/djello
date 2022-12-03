@@ -45,11 +45,9 @@ class CreateCardView(CreateView):
 
 @csrf_exempt
 def store_lists(request):
-    data = json.loads(request.body.decode("utf-8"))
-
-    for i, card_id in enumerate(data.get("cards", [])):
+    for i, card_id in enumerate(request.POST.getlist("card")):
         card = Card.objects.get(pk=card_id)
-        card.list_id = data.get("list")
+        card.list_id = request.POST.get("list")
         card.order = i * 10
         card.save()
 
