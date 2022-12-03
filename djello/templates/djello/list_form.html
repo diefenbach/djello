@@ -6,30 +6,31 @@
       action="{% url 'djello:create-list' %}"
       method="post"
       id="list-form"
-      class="row">
+      class="bg-gray-200 w-64 p-2">
     {% csrf_token %}
 
-    <input class="form-control"
-           type="text"
+    <input type="text"
            name="title"
            maxlength="50"
            required
            id="id_title"
+           class="w-full p-2 rounded"
            _="on load call me.focus()
-              on keyup['Escape'] call #cancelAddListButton.click()">
+              on keyup[key is 'Escape'] call #cancelAddListButton.click()">
 
-    <div class="row">
+    <div>
         <button type="submit"
-                class="btn btn-primary mt-1">
-            OK
+                class="text-white bg-blue-500 py-1 mt-1 hover:bg-blue-600 rounded w-1/2">
+            Add list
         </button>
+
         <button hx-boost="true"
                 hx-swap="outerHTML"
                 hx-trigger="click"
                 hx-target="#list-form"
                 hx-get="{% url 'c:c' 'add-list-button' %}"
                 id="cancelAddListButton"
-                class="btn btn-secondary mt-1">
+                class="text-white bg-gray-500 py-1 mt-1 hover:bg-gray-600 rounded w-1/4">
             X
         </button>
     </div>

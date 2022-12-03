@@ -12,10 +12,15 @@
           hx-swap="none"
           hx-trigger="sendForm throttle:10ms"
           _="on end trigger sendForm on event.to">
+
         <input type='hidden' name='list' value='{{ list_id }}'/>
+
         {% for card in cards %}
-            <div class="dj-card">
-                <input type='hidden' name='card' value='{{ card.id }}'/>{{ card.title }}
+            <div>
+                <input type='hidden' name='card' value='{{ card.id }}'/>
+                <div class="my-2 p-2 rounded bg-white hover:bg-gray-100">
+                    {{ card.title }}
+                </div>
             </div>
         {% endfor %}
     </form>

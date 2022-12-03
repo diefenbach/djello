@@ -6,29 +6,31 @@
       action="{% url 'djello:create-card' list_id %}">
     {% csrf_token %}
 
-    <input class="form-control"
+    <input class="w-full p-2"
            type="text"
            name="title"
            maxlength="50"
            required
            id="id_title"
            _="on load call me.focus()
-              on keyup['Escape'] call #cancelAddCardButton.click()">
+              on keyup[key is 'Escape'] call #cancelAddCardButton.click()">
 
-    <button _="on click wait 10ms then set #id_title.value to ''"
-            type="submit"
-            class="btn btn-primary"
-            id="create-card-button">
-        OK
-    </button>
+    <div>
+        <button _="on click wait 10ms then set #id_title.value to ''"
+                type="submit"
+                class="text-white bg-blue-500 py-1 mt-1 hover:bg-blue-600 rounded w-1/2"
+                id="create-card-button">
+            Add card
+        </button>
 
-    <button hx-trigger="click"
-            hx-target="#add-card-form"
-            hx-swap="outerHTML"
-            hx-get="{% url 'c:c1' 'add-card-button' list_id %}"
-            id="cancelAddCardButton"
-            type="reset"
-            class="btn btn-secondary">
-        X
-    </button>
+        <button hx-trigger="click"
+                hx-target="#add-card-form"
+                hx-swap="outerHTML"
+                hx-get="{% url 'c:c1' 'add-card-button' list_id %}"
+                id="cancelAddCardButton"
+                type="reset"
+                class="text-white bg-gray-500 py-1 mt-1 hover:bg-gray-600 rounded w-1/4">
+            X
+        </button>
+    </div>
 </form>
