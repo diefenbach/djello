@@ -9,7 +9,14 @@
       class="row">
     {% csrf_token %}
 
-    <input class="form-control" type="text" name="title" maxlength="50" required id="id_title">
+    <input class="form-control"
+           type="text"
+           name="title"
+           maxlength="50"
+           required
+           id="id_title"
+           _="on load call me.focus()
+              on keyup['Escape'] call #cancelAddListButton.click()">
 
     <div class="row">
         <button type="submit"
@@ -21,6 +28,7 @@
                 hx-trigger="click"
                 hx-target="#list-form"
                 hx-get="{% url 'c:c' 'add-list-button' %}"
+                id="cancelAddListButton"
                 class="btn btn-secondary mt-1">
             X
         </button>
