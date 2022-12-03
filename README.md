@@ -5,7 +5,7 @@ This is a try to create a trello clone by using Django, django_components, htmx 
 ## Goal
 - Main focus at the moment is: Use django_components to render the whole content on the first request without the use of any Javascript (SEO) and to be able to refresh those components (easily) later without a whole page reload. 
 
-- To prove that one can create a rich user interface without a complex javascript framework for the frontend and all the negative consquences it has, e.g. a REST API and its security impacts. 
+- To prove that one can create a rich user interface without a complex javascript framework for the frontend and all the negative consequences it has, e.g. a REST API and its security/permission impacts. 
 
 ## Installation 
 1. Clone this repository
