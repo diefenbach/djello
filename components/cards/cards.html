@@ -3,12 +3,12 @@
      hx-trigger="AddedCard{{ list_id }} from:body">
 
      {% comment %}
-        For any reasons store-lists is called twice while the end event is called just once.
+        For any reasons save-lists is called twice while the end event is called just once.
         throttle:10ms below fixes this for now.
      {% endcomment %}
 
     <form class="dj-list"
-          hx-post="{% url 'djello:store-lists' %}"
+          hx-post="{% url 'djello:save-lists' %}"
           hx-swap="none"
           hx-trigger="sendForm throttle:10ms"
           _="on end trigger sendForm on event.to">

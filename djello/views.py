@@ -45,7 +45,7 @@ class CreateCardView(CreateView):
 
 
 @csrf_exempt
-def store_lists(request):
+def save_lists(request):
     for i, card_id in enumerate(request.POST.getlist("card")):
         card = Card.objects.get(pk=card_id)
         card.list_id = request.POST.get("list")
@@ -61,6 +61,6 @@ def save_list_title(request, list_id):
     list_.title = request.POST.get("title")
     list_.save()
 
-    template = Template("{% component 'list-title' " + str(list_id) + "%}")
+    template = Template("{% component 'list-editable-title' " + str(list_id) + "%}")
     context = RequestContext(request)
     return HttpResponse(template.render(context))
