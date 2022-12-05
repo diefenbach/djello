@@ -3,23 +3,49 @@
     hyperscript.
 {% endcomment %}
 
-
-<div class="p-2 my-1 border-solid border-t-2 border-b-2 border-transparent"
-     id="list-title{{ list.id }}"
-     _="on click remove .hidden from #list-editable-title{{ list.id }}
+<div class="flex justify-between">
+    <div class="p-2 my-1 border-solid border-t-2 border-b-2 border-transparent"
+         id="list-title{{ list.id }}"
+         _="on click remove .hidden from #list-editable-title{{ list.id }}
         then call #list-editable-title{{ list.id }}.select()
         then add .hidden to me">
-    {{ list.title }}
-</div>
+        {{ list.title }}
+    </div>
 
-<input hx-boost="true"
-       hx-trigger="keyup[key=='Enter']"
-       hx-post="{% url 'djello:save-list-title' list.id %}"
-       hx-swap="outerHTML"
-       id="list-editable-title{{ list.id }}"
-       class="w-full p-2 my-1 bg-gray-100 hidden"
-       type="text"
-       name="title"
-       _="on keyup[key is 'Escape'] add .hidden to me
+    <input hx-boost="true"
+           hx-trigger="keyup[key=='Enter']"
+           hx-post="{% url 'djello:save-list-title' list.id %}"
+           hx-swap="outerHTML"
+           id="list-editable-title{{ list.id }}"
+           class="w-full p-2 my-1 bg-gray-100 hidden"
+           type="text"
+           name="title"
+           _="on keyup[key is 'Escape'] add .hidden to me
           then remove .hidden from #list-title{{ list.id }}"
-       value="{{ list.title }}"/>
+           value="{{ list.title }}"/>
+
+    <div class="relative">
+        <div class="hover:bg-gray-300 p-2 cursor-pointer"
+             _="on click toggle .hidden on #list-actions-dialog{{ list.id }}">
+            ...
+        </div>
+
+        <div class="hidden list-actions-dialog"
+             id="list-actions-dialog{{ list.id }}">
+            <div class="absolute border-solid rounded border border-gray-400 w-64 p-2 bg-white">
+                <h1 class="text-center pb-2">List actions</h1>
+                <a class="block p-1 cursor-pointer"
+                   hx-boost="true"
+                   hx-target="#add-card-button{{ list.id }}"
+                   hx-get="{% url 'djello:create-card' list.id %}"
+                   _="on click add .hidden to #list-actions-dialog{{ list.id }}">
+                    Add card
+                </a>
+
+                <a class="block p-1 cursor-pointer" href="">Copy list</a>
+                <a class="block p-1 cursor-pointer" href="">Move list</a>
+                <a class="block p-1 cursor-pointer" href="">Watch</a>
+            </div>
+        </div>
+    </div>
+</div>

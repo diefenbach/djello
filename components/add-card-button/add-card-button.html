@@ -1,6 +1,7 @@
 <button hx-trigger="click"
         hx-swap="outerHTML"
         hx-get="{% url 'djello:create-card' list_id=list_id %}"
+        id="add-card-button{{ list_id }}"
         class="text-gray-500 bg-gray-300 px-3 rounded h-10 hover:bg-gray-400 w-full">
     Add another card
 </button>
