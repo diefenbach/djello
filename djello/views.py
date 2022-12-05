@@ -1,10 +1,8 @@
-import json
-
 from django.http import HttpResponse
-from django.template import Template, RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, CreateView
 
+from components_helper.views import component_view_1
 from djello.models import List, Card
 
 
@@ -61,6 +59,6 @@ def save_list_title(request, list_id):
     list_.title = request.POST.get("title")
     list_.save()
 
-    template = Template("{% component 'list-editable-title' " + str(list_id) + "%}")
-    context = RequestContext(request)
-    return HttpResponse(template.render(context))
+    # Good example of returning a component after something happens before
+    # (saved the list title in this case).
+    return component_view_1(request, "list-editable-title", str(list_id))

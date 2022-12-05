@@ -1,3 +1,9 @@
+{% comment %}
+    This is a good example to save a request to the server in which two different tags are displayed and hidden with
+    hyperscript.
+{% endcomment %}
+
+
 <div class="p-2 my-1 border-solid border-t-2 border-b-2 border-transparent"
      id="list-title{{ list.id }}"
      _="on click remove .hidden from #list-editable-title{{ list.id }}
@@ -16,4 +22,4 @@
        name="title"
        _="on keyup[key is 'Escape'] add .hidden to me
           then remove .hidden from #list-title{{ list.id }}"
-       value="{{ list.title }}" />
+       value="{{ list.title }}"/>

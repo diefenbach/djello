@@ -15,6 +15,6 @@ def component_view_1(request, component_name, param):
     """
     View for a component with one parameter
     """
-    template = Template('{% component "' + component_name + '" ' + param + ' %}')
+    template = Template('{% component "' + component_name + '" ' + param + " %}")
     context = RequestContext(request)
     return HttpResponse(template.render(context))
