@@ -1,6 +1,7 @@
 import json
 
 from django.http import HttpResponse
+from django.template import Template, RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, CreateView
 
@@ -52,3 +53,14 @@ def store_lists(request):
         card.save()
 
     return HttpResponse()
+
+
+@csrf_exempt
+def save_list_title(request, list_id):
+    list_ = List.objects.get(pk=list_id)
+    list_.title = request.POST.get("title")
+    list_.save()
+
+    template = Template("{% component 'list-title' " + str(list_id) + "%}")
+    context = RequestContext(request)
+    return HttpResponse(template.render(context))

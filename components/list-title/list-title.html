@@ -1,0 +1,6 @@
+<div hx-trigger="click"
+     hx-get="{% url 'c:c1' 'list-editable-title' list.id %}"
+     hx-swap="outerHTML"
+     class="p-2 my-1">
+    {{ list.title }}
+</div>

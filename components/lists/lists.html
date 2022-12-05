@@ -6,7 +6,7 @@
     {% for list in lists %}
         <div class="w-64 bg-gray-200 p-2 mr-2">
             <div class="mb-1">
-                {{ list.title }}
+                {% component "list-title" list.id %}
             </div>
             {% component "cards" list.id %}
             {% component "add-card-button" list.id %}

@@ -1,0 +1,9 @@
+<input hx-boost="true"
+       hx-trigger="keyup[key=='Escape'], keyup[key=='Enter']"
+       hx-post="{% url 'djello:save-list-title' list.id %}"
+       hx-swap="outerHTML"
+       class="w-full p-2 my-1 bg-gray-100"
+       _="on load call me.select()"
+       type="text"
+       name="title"
+       value="{{ list.title }}" />
