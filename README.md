@@ -24,6 +24,7 @@ If you have any questions or suggestions, please don't hesitate to get in contac
 - hyperscript: https://hyperscript.org/
 - Real world example: https://www.youtube.com/watch?v=3GObi93tjZI&t=1s
 - Article: https://arhamjain.com/2021/12/18/hyperscript-simple-type.html
+- djhtmx, interactive UI Components for Django using htmx: https://github.com/edelvalle/djhtmx
 
 
 ## Thanks
